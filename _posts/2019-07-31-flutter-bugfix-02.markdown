@@ -68,4 +68,4 @@ dependencies {
 
 完成此步骤后，Gradle会首先Sync一遍。Sync未出现错误后，依然需要运行项目尝试Build。
 
-当Build不出现错误且项目成功运行时，则意味着AndroidX迁移工作已经完成。需要注意的是，后续引入任何Plugin或者第三方原生库均需要进行了以上步骤的版本检查。由于目前Flutter尚属快速迭代阶段，建议开发者使用stable channel同时严格按照本方案进行配置，以免遇到其他无法预期的问题。https://www.yejinmo.com/games/Mario/Mario.html "Play")
+当Build不出现错误且项目成功运行时，则意味着AndroidX迁移工作已经完成。需要注意的是，后续引入任何Plugin或者第三方原生库均需要进行了以上步骤的版本检查。由于目前Flutter尚属快速迭代阶段，建议开发者使用stable channel同时严格按照本方案进行配置，以免遇到其他无法预期的问题。
