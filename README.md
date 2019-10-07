@@ -1,218 +1,52 @@
-# minima
-
-*Minima is a one-size-fits-all Jekyll theme for writers*. It's Jekyll's default (and first) theme. It's what you get when you run `jekyll new`.
-
-[Theme preview](https://jekyll.github.io/minima/)
-
-![minima theme preview](/screenshot.png)
-
-## Installation
-
-Add this line to your Jekyll site's Gemfile:
-
-```ruby
-gem "minima"
-```
-
-And add this line to your Jekyll site:
-
-```yaml
-theme: minima
-```
-
-And then execute:
-
-    $ bundle
-
-
-## Contents At-A-Glance
-
-Minima has been scaffolded by the `jekyll new-theme` command and therefore has all the necessary files and directories to have a new Jekyll site up and running with zero-configuration.
-
-### Layouts
-
-Refers to files within the `_layouts` directory, that define the markup for your theme.
-
-  - `default.html` &mdash; The base layout that lays the foundation for subsequent layouts. The derived layouts inject their contents into this file at the line that says ` {{ content }} ` and are linked to this file via [FrontMatter](https://jekyllrb.com/docs/frontmatter/) declaration `layout: default`.
-  - `home.html` &mdash; The layout for your landing-page / home-page / index-page. [[More Info.](#home-layout)]
-  - `page.html` &mdash; The layout for your documents that contain FrontMatter, but are not posts.
-  - `post.html` &mdash; The layout for your posts.
-
-### Includes
-
-Refers to snippets of code within the `_includes` directory that can be inserted in multiple layouts (and another include-file as well) within the same theme-gem.
-
-  - `disqus_comments.html` &mdash; Code to markup disqus comment box.
-  - `footer.html` &mdash; Defines the site's footer section.
-  - `google-analytics.html` &mdash; Inserts Google Analytics module (active only in production environment).
-  - `head.html` &mdash; Code-block that defines the `<head></head>` in *default* layout.
-  - `header.html` &mdash; Defines the site's main header section. By default, pages with a defined `title` attribute will have links displayed here.
-
-### Sass
-
-Refers to `.scss` files within the `_sass` directory that define the theme's styles.
-
-  - `minima.scss` &mdash; The core file imported by preprocessed `main.scss`, it defines the variable defaults for the theme and also further imports sass partials to supplement itself.
-  - `minima/_base.scss` &mdash; Resets and defines base styles for various HTML elements.
-  - `minima/_layout.scss` &mdash; Defines the visual style for various layouts.
-  - `minima/_syntax-highlighting.scss` &mdash; Defines the styles for syntax-highlighting.
-
-### Assets
-
-Refers to various asset files within the `assets` directory.
-Contains the `main.scss` that imports sass files from within the `_sass` directory. This `main.scss` is what gets processed into the theme's main stylesheet `main.css` called by `_layouts/default.html` via `_includes/head.html`.
-
-This directory can include sub-directories to manage assets of similar type, and will be copied over as is, to the final transformed site directory.
-
-### Plugins
-
-Minima comes with [`jekyll-seo-tag`](https://github.com/jekyll/jekyll-seo-tag) plugin preinstalled to make sure your website gets the most useful meta tags. See [usage](https://github.com/jekyll/jekyll-seo-tag#usage) to know how to set it up.
-
-## Usage
-
-### Home Layout
-
-`home.html` is a flexible HTML layout for the site's landing-page / home-page / index-page. <br/>
-
-#### Main Heading and Content-injection
-
-From Minima v2.2 onwards, the *home* layout will inject all content from your `index.md` / `index.html` **before** the **`Posts`** heading. This will allow you to include non-posts related content to be published on the landing page under a dedicated heading. *We recommended that you title this section with a Heading2 (`##`)*.
-
-Usually the `site.title` itself would suffice as the implicit 'main-title' for a landing-page. But, if your landing-page would like a heading to be explicitly displayed, then simply define a `title` variable in the document's front matter and it will be rendered with an `<h1>` tag.
-
-#### Post Listing
-
-This section is optional from Minima v2.2 onwards.<br/>
-It will be automatically included only when your site contains one or more valid posts or drafts (if the site is configured to `show_drafts`).
-
-The title for this section is `Posts` by default and rendered with an `<h2>` tag. You can customize this heading by defining a `list_title` variable in the document's front matter.
-
---
-
-### Customization
-
-To override the default structure and style of minima, simply create the concerned directory at the root of your site, copy the file you wish to customize to that directory, and then edit the file.
-e.g., to override the [`_includes/head.html `](_includes/head.html) file to specify a custom style path, create an `_includes` directory, copy `_includes/head.html` from minima gem folder to `<yoursite>/_includes` and start editing that file.
-
-The site's default CSS has now moved to a new place within the gem itself, [`assets/main.scss`](assets/main.scss). To **override the default CSS**, the file has to exist at your site source. Do either of the following:
-- Create a new instance of `main.scss` at site source.
-  - Create a new file `main.scss` at `<your-site>/assets/`
-  - Add the frontmatter dashes, and
-  - Add `@import "minima";`, to `<your-site>/assets/main.scss`
-  - Add your custom CSS.
-- Download the file from this repo
-  - Create  a new file `main.scss` at `<your-site>/assets/`
-  - Copy the contents at [assets/main.scss](assets/main.scss) onto the `main.scss` you just created, and edit away!
-- Copy directly from Minima 2.0 gem
-  - Go to your local minima gem installation directory ( run `bundle show minima` to get the path to it ).
-  - Copy the `assets/` folder from there into the root of `<your-site>`
-  - Change whatever values you want, inside `<your-site>/assets/main.scss`
-
---
-
-### Customize navigation links
-
-This allows you to set which pages you want to appear in the navigation area and configure order of the links.
-
-For instance, to only link to the `about` and the `portfolio` page, add the following to you `_config.yml`:
-
-```yaml
-header_pages:
-  - about.md
-  - portfolio.md
-```
-
---
-
-### Change default date format
-
-You can change the default date format by specifying `site.minima.date_format`
-in `_config.yml`.
-
-```
-# Minima date format
-# refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
-minima:
-  date_format: "%b %-d, %Y"
-```
-
---
-
-### Enabling comments (via Disqus)
-
-Optionally, if you have a Disqus account, you can tell Jekyll to use it to show a comments section below each post.
-
-To enable it, add the following lines to your Jekyll site:
-
-```yaml
-  disqus:
-    shortname: my_disqus_shortname
-```
-
-You can find out more about Disqus' shortnames [here](https://help.disqus.com/customer/portal/articles/466208).
-
-Comments are enabled by default and will only appear in production, i.e., `JEKYLL_ENV=production`
-
-If you don't want to display comments for a particular post you can disable them by adding `comments: false` to that post's YAML Front Matter.
-
---
-
-### Social networks
-
-You can add links to the accounts you have on other sites, with respective icon, by adding one or more of the following options in your config:
-
-```yaml
-twitter_username: jekyllrb
-github_username:  jekyll
-dribbble_username: jekyll
-facebook_username: jekyll
-flickr_username: jekyll
-instagram_username: jekyll
-linkedin_username: jekyll
-pinterest_username: jekyll
-youtube_username: jekyll
-googleplus_username: +jekyll
-rss: rss
-
-mastodon:
- - username: jekyll
-   instance: example.com
- - username: jekyll2
-   instance: example.com
-```
-
---
-
-### Enabling Google Analytics
-
-To enable Google Analytics, add the following lines to your Jekyll site:
-
-```yaml
-  google_analytics: UA-NNNNNNNN-N
-```
-
-Google Analytics will only appear in production, i.e., `JEKYLL_ENV=production`
-
---
-
-### Enabling Excerpts on the Home Page
-
-To display post-excerpts on the Home Page, simply add the following to your `_config.yml`:
-
-```yaml
-show_excerpts: true
-```
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/jekyll/minima. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## Development
-
-To set up your environment to develop this theme, run `script/bootstrap`.
-
-To test your theme, run `script/server` (or `bundle exec jekyll serve`) and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme and the contents. As you make modifications, your site will regenerate and you should see the changes in the browser after a refresh.
-
-## License
-
-The theme is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+# 联系方式
+- 电话：13041060752
+- Email：wangchenxing@bupt.edu.cn
+- QQ/微信号：1263656944/wms-wms-wms
+# 个人信息
+ - 王晨星/男/1997 
+ - 本科专业排名(GPA)：Top 1 (4.5)
+ - 学士学位(2015.9-2019.6)/东北石油大学SE
+ - 硕士研究生在读(2019.9-至今)/北京邮电大学MSE
+ - 英语水平：四级573/六级503
+ - 个人主页：https://wangchenxing.com
+ - Github：https://github.com/morningstarwang
+# 项目开发经验
+## 2015.9-2016.12
+### 大庆烟草库存管理系统 
+该项目是为大庆市烟草局设计开发的商品进销存管理系统。项目使用Winform技术开发，运行于小型局域网环境。我在此项目中作为组长负责框架搭建，系统性能优化和集成测试工作。项目当前用户量在100人左右。
+### “老师带你飞”手机App互动平台 
+该项目是从高校师生互动角度出发，为师生提供的课上课下教学及学习帮助的集合考勤、作业资源共享、师生交流的平台。项目使用Android技术配合LeanCloud后端云实现。我在此项目中作为组长负责前端后端技术选取和框架搭建，并完成了主要的编码工作。项目目前发布于腾讯应用宝平台。
+## 2017.1-2018.2
+### XX学习平台(保密协议需要)
+- 该项目是为用户提供类似于Mooc的视频学习、作业和考核等功能的在线学习平台。项目使用了ASP.NET平台的MVC5+EF6框架进行开发并提供流媒体服务。
+- 我在此项目中负责需求分析及技术学习，在后续项目开发过程中成功完成了技术要点的迁移工作。
+- 项目获得了部级嘉奖，同时在线人数可达3000多人，目前仍在广泛使用。
+### XX便民平台(保密协议需要)
+- 该项目的使用者为三类用户和一类管理员。业务流程需要在三类用户的即时交互下进行，为其中一类用户提供服务（可参考滴滴打车的业务流程）。项目前端包括三类用户的基于Android的App端以及一类用户的基于EasyUI的Web端；后端包括：支撑Web和App的基于MVC5+EF6的服务框架，支撑推送和数据验证核心的基于Springboot的服务框架和内部网络有关Oracle的基于java source调用存储过程结合触发器的微型Java服务。在开发过程中，App遇到的主要难点是持续变化的需求以及强交互性的业务逻辑，App三类用户之前存在着类似于滴滴打车案例中司机与乘客的即时交互逻辑，且耦合度更高，业务流程也更为复杂；支撑推送和数据验证核心的基于Springboot服务与内部网络关于Oracle的微服务的设计和实现主要是我来进行实现的。其难点在于通过第三方的数据同步机制，在Linux系统上对Oracle数据变化进行监听并仅通过Oracle内置触发器和JVM环境实现远程调用并将数据回传并推送至App。
+- 我在此项目中作为组长负责需求分析，数据库及功能设计以及技术选型和技术难点攻关。
+- 此次项目开发使我适应了需求持续变化并且时间紧迫的开发模式，并且在短时间内在技术攻关和框架设计方面有了很大成长。项目当前入住X类用户基本覆盖本市范围内所有该类合法用户(约131位)，并且在积极推广、升级维护和使用中。
+### XX验证平台(保密协议需要)
+- 该项目两类用户要求处于特殊环境使用特殊设备进行XX验证工作。一类用户负责分配可验证内容的相关权限，另一类用户负责使用特殊设备进行XX验证。项目采用前后端分离的restful风格进行开发。前端包括特殊环境下的Android App和基于Vue.JS的Web管理页面；后端采用基于Springboot的restful服务并采用Shiro进行权限管理。App遇到的主要难点是对NFC识别库和OCR识别库的集成；Web端采用Vue.JS并结合ElementUI进行开发；后端主要难点在于利用Shiro维护两个不同Realm进行授权和认证操作，并且两种Realm有着两种不同的token维护方式，且对于部分接口的调用要依据权限给予不同数据。
+- 我在此项目中作为组长负责需求分析，数据库及功能设计以及技术选型和后端技术难点攻关。
+- 项目当前用户量（2000位左右）在不断增加（根据具体需要随时入驻），在XX时期已经进行了初步试用，并且进行过两次维护升级后目前仍在较大规模使用。
+## 2018.6-至今
+### 云智校APP
+- 该项目详情见：https://github.com/Anjiefan/flutter_campus_social_app
+- 我在此项目中作为项目组长负责前后端技术选型、架构设计和难点攻关。
+
+# 获奖情况
+  - 全国大学生英语竞赛 国家级一等奖
+  - 国家级大学生创新创业训练计划(http://www.moe.edu.cn/s78/A08/A08_gggs/A08_sjhj/201609/t20160929_282721.html)
+  - 国家奖学金(http://www.moe.gov.cn/srcsite/A05/s7505/201711/t20171108_318697.html)
+- 第三届互联网＋大学生创新创业大赛 黑龙江省三等奖
+# 技能清单
+以下均为我掌握的技能
+- 运维：Linux基础
+- Web开发：JSP/ASP.NET/模板引擎
+- 后端框架：SpringBoot/MVC5+EF6
+- 前端框架：Vue.JS
+- 数据库相关：MySQL/Oracle/SQL Server/SQLite
+- 云和开放平台：LeanCloud/阿里云/腾讯云/微信小程序开发
+# 致谢
+感谢您花时间阅读我的简历，期待能有机会和您共事。
+      
