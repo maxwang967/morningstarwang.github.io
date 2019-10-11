@@ -1,7 +1,3 @@
-# 联系方式
-- 电话：13041060752
-- Email：wangchenxing@bupt.edu.cn
-- QQ/微信号：1263656944/wms-wms-wms
 # 个人信息
  - 王晨星/男/1997 
  - 本科专业排名(GPA)：Top 1 (4.5)
